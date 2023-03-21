@@ -17,7 +17,10 @@ class ChevalController extends AbstractController
     #[Route('/cheval', name: 'cheval')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-        // je récupère la liste des chevaux en base de données
+        //retourne le user pdo connecté
+        // ceci est un test pour voir si je récupère bien le user pdo connecté
+        /*$user = $this->getUser();
+        var_dump($user);die();     */   // je récupère la liste des chevaux en base de données
         //$chevaux = $entityManager->getRepository(Cheval::class)->findAll();
 
         // je retourne la vue de la liste des chevaux
