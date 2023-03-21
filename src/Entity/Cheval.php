@@ -23,7 +23,7 @@ class Cheval
     private ?string $description = null;
 
     #[ORM\OneToOne(inversedBy: 'cheval', cascade: ['persist', 'remove'])]
-    private ?joueur $id_propietaire = null;
+    private ?Joueur $id_propietaire = null;
 
     #[ORM\OneToOne(mappedBy: 'id_cheval', cascade: ['persist', 'remove'])]
     private ?Etats $etats = null;
