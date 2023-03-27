@@ -23,7 +23,7 @@ class Cheval
     private ?string $description = null;
 
     #[ORM\OneToOne(inversedBy: 'cheval', cascade: ['persist', 'remove'])]
-    private ?joueur $id_propietaire = null;
+    private ?Joueur $id_propietaire = null;
 
     #[ORM\OneToOne(mappedBy: 'id_cheval', cascade: ['persist', 'remove'])]
     private ?Etats $etats = null;
@@ -75,12 +75,12 @@ class Cheval
         return $this;
     }
 
-    public function getIdPropietaire(): ?joueur
+    public function getIdPropietaire(): ?Joueur
     {
         return $this->id_propietaire;
     }
 
-    public function setIdPropietaire(?joueur $id_propietaire): self
+    public function setIdPropietaire(?Joueur $id_propietaire): self
     {
         $this->id_propietaire = $id_propietaire;
 
