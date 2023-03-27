@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\JoueurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -64,6 +66,14 @@ class Joueur
 
     #[ORM\OneToOne(mappedBy: 'id_joueur', cascade: ['persist', 'remove'])]
     private ?CompteBancaire $compteBancaire = null;
+
+    #[ORM\ManyToMany(targetEntity: ClubHippique::class, mappedBy: 'id_joueur')]
+    private Collection $clubHippiques;
+
+    public function __construct()
+    {
+        $this->clubHippiques = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -285,6 +295,33 @@ class Joueur
         }
 
         $this->compteBancaire = $compteBancaire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ClubHippique>
+     */
+    public function getClubHippiques(): Collection
+    {
+        return $this->clubHippiques;
+    }
+
+    public function addClubHippique(ClubHippique $clubHippique): self
+    {
+        if (!$this->clubHippiques->contains($clubHippique)) {
+            $this->clubHippiques->add($clubHippique);
+            $clubHippique->addIdJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClubHippique(ClubHippique $clubHippique): self
+    {
+        if ($this->clubHippiques->removeElement($clubHippique)) {
+            $clubHippique->removeIdJoueur($this);
+        }
 
         return $this;
     }
