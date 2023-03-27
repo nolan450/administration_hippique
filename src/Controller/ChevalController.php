@@ -17,23 +17,16 @@ class ChevalController extends AbstractController
     #[Route('/cheval', name: 'cheval')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-        //création d'un cheval
-        $cheval = new Cheval();
-        $cheval->setNom("Cheval 1");
-        $cheval->setRace("Selle Français");
-        $cheval->setDescription("Cheval de sport");
-
-        // je persiste le cheval en base de données
-        $entityManager->persist($cheval);
-        $entityManager->flush();
-
-        // je récupère la liste des chevaux en base de données
-        $chevaux = $entityManager->getRepository(Cheval::class)->findAll();
+        //retourne le user pdo connecté
+        // ceci est un test pour voir si je récupère bien le user pdo connecté
+        /*$user = $this->getUser();
+        var_dump($user);die();     */   // je récupère la liste des chevaux en base de données
+        //$chevaux = $entityManager->getRepository(Cheval::class)->findAll();
 
         // je retourne la vue de la liste des chevaux
         return $this->render('cheval/index.html.twig', [
             'controller_name' => 'ChevalController',
-            'chevaux' => $chevaux
+            //'chevaux' => $chevaux
         ]);
     }
 }

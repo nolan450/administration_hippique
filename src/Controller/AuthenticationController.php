@@ -22,7 +22,7 @@ class AuthenticationController extends AbstractController
             $motdepasse = $_POST['password'];
 
             try {
-                $connexion = new \PDO("mysql:host=localhost;dbname=hippique_symfony_project", $user, $motdepasse);
+                $connexion = new \PDO("mysql:host=localhost;dbname=club_hippique", $user, $motdepasse);
                 if($connexion) {
                     return $this->redirect('index');
                 }
