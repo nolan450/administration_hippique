@@ -33,7 +33,7 @@ class Etats
 
     #[ORM\OneToOne(inversedBy: 'etats', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?cheval $id_cheval = null;
+    private ?Cheval $id_cheval = null;
 
     public function getId(): ?int
     {
@@ -112,15 +112,20 @@ class Etats
         return $this;
     }
 
-    public function getIdCheval(): ?cheval
+    public function getIdCheval(): ?Cheval
     {
         return $this->id_cheval;
     }
 
-    public function setIdCheval(cheval $id_cheval): self
+    public function setIdCheval(Cheval $id_cheval): self
     {
         $this->id_cheval = $id_cheval;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
     }
 }

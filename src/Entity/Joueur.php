@@ -45,7 +45,7 @@ class Joueur
     private ?string $avatar = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $desciption = null;
+    private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $site_web = null;
@@ -54,7 +54,7 @@ class Joueur
     private ?string $adresse_ip = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_inciption = null;
+    private ?\DateTimeInterface $date_inscription = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $derniere_connexion = null;
@@ -190,14 +190,14 @@ class Joueur
         return $this;
     }
 
-    public function getDesciption(): ?string
+    public function getDescription(): ?string
     {
-        return $this->desciption;
+        return $this->description;
     }
 
-    public function setDesciption(string $desciption): self
+    public function setDescription(string $description): self
     {
-        $this->desciption = $desciption;
+        $this->description = $description;
 
         return $this;
     }
@@ -226,14 +226,14 @@ class Joueur
         return $this;
     }
 
-    public function getDateInciption(): ?\DateTimeInterface
+    public function getDateInscription(): ?\DateTimeInterface
     {
-        return $this->date_inciption;
+        return $this->date_inscription;
     }
 
-    public function setDateInciption(\DateTimeInterface $date_inciption): self
+    public function setDateInscription(\DateTimeInterface $date_inscription): self
     {
-        $this->date_inciption = $date_inciption;
+        $this->date_inscription = $date_inscription;
 
         return $this;
     }
@@ -287,5 +287,10 @@ class Joueur
         $this->compteBancaire = $compteBancaire;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getPseudonyme();
     }
 }

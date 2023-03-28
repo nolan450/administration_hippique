@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joueur index{% endblock %}
+
+{% block body %}
+    <h1>Joueur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudonyme</th>
+                <th>Email</th>
+                <th>Mot_de_passe</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Sexe</th>
+                <th>Date_de_naissance</th>
+                <th>Telephone</th>
+                <th>Adresse_postale</th>
+                <th>Avatar</th>
+                <th>Desciption</th>
+                <th>Site_web</th>
+                <th>Adresse_ip</th>
+                <th>Date_inciption</th>
+                <th>Derniere_connexion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for joueur in joueurs %}
+            <tr>
+                <td>{{ joueur.id }}</td>
+                <td>{{ joueur.pseudonyme }}</td>
+                <td>{{ joueur.email }}</td>
+                <td>{{ joueur.motDePasse }}</td>
+                <td>{{ joueur.prenom }}</td>
+                <td>{{ joueur.nom }}</td>
+                <td>{{ joueur.sexe }}</td>
+                <td>{{ joueur.dateDeNaissance ? joueur.dateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ joueur.telephone }}</td>
+                <td>{{ joueur.adressePostale }}</td>
+                <td>{{ joueur.avatar }}</td>
+                <td>{{ joueur.desciption }}</td>
+                <td>{{ joueur.siteWeb }}</td>
+                <td>{{ joueur.adresseIp }}</td>
+                <td>{{ joueur.dateInciption ? joueur.dateInciption|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ joueur.derniereConnexion ? joueur.derniereConnexion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_joueur_show', {'id': joueur.id}) }}">show</a>
+                    <a href="{{ path('app_joueur_edit', {'id': joueur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_joueur_new') }}">Create new</a>
+{% endblock %}
