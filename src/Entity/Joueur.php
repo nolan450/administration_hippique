@@ -65,13 +65,8 @@ class Joueur
     #[ORM\OneToOne(mappedBy: 'id_joueur', cascade: ['persist', 'remove'])]
     private ?CompteBancaire $compteBancaire = null;
 
-    ##[ORM\ManyToMany(targetEntity: ClubHippique::class, mappedBy: 'id_joueur')]
-    #private Collection $clubHippiques;
-
-    public function __construct()
-    {
-        #$this->clubHippiques = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'id_joueur')]
+    private ?CentreEquestre $centreEquestre = null;
 
     public function getId(): ?int
     {
@@ -297,35 +292,20 @@ class Joueur
         return $this;
     }
 
-    /**
-     * @return Collection<int, ClubHippique>
-     */
-    /*public function getClubHippiques(): Collection
-    {
-        return $this->clubHippiques;
-    }
-
-    public function addClubHippique(ClubHippique $clubHippique): self
-    {
-        if (!$this->clubHippiques->contains($clubHippique)) {
-            $this->clubHippiques->add($clubHippique);
-            $clubHippique->addIdJoueur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClubHippique(ClubHippique $clubHippique): self
-    {
-        if ($this->clubHippiques->removeElement($clubHippique)) {
-            $clubHippique->removeIdJoueur($this);
-        }
-
-        return $this;
-
-    }*/
     public function __toString(): string
     {
         return $this->getPseudonyme();
+    }
+
+    public function getCentreEquestre(): ?CentreEquestre
+    {
+        return $this->centreEquestre;
+    }
+
+    public function setCentreEquestre(?CentreEquestre $centreEquestre): self
+    {
+        $this->centreEquestre = $centreEquestre;
+
+        return $this;
     }
 }
