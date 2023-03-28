@@ -24,7 +24,7 @@ class Autres
 
     #[ORM\OneToOne(inversedBy: 'autres', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?cheval $id_cheval = null;
+    private ?Cheval $id_cheval = null;
 
     public function getId(): ?int
     {
@@ -67,12 +67,12 @@ class Autres
         return $this;
     }
 
-    public function getIdCheval(): ?cheval
+    public function getIdCheval(): ?Cheval
     {
         return $this->id_cheval;
     }
 
-    public function setIdCheval(cheval $id_cheval): self
+    public function setIdCheval(Cheval $id_cheval): self
     {
         $this->id_cheval = $id_cheval;
 

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cheval{% endblock %}
+
+{% block body %}
+    {#<h1>Create new Cheval</h1>#}
+
+        <div class="col-md-6 m-auto">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">General</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom du cheval'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.race) }}
+                        {{ form_widget(form.race, {'attr': {'class': 'form-control', 'placeholder': 'Race'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description du cheval'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.id_propietaire) }}
+                        {{ form_widget(form.id_propietaire, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.etats) }}
+                        {{ form_widget(form.etats, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.attributsPhysiques) }}
+                        {{ form_widget(form.attributsPhysiques, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.autres) }}
+                        {{ form_widget(form.autres, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <a class="btn btn-light mr-1" href="{{ path('app_cheval_index') }}">Retour à la liste</a>
+                    <button type="submit" class="btn btn-primary">Creer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    {#{{ include('cheval/_form.html.twig') }}#}
+    {#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">Create</button>
+    {{ form_end(form) }}#}
+
+
+{% endblock %}
