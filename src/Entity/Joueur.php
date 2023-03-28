@@ -65,6 +65,9 @@ class Joueur
     #[ORM\OneToOne(mappedBy: 'id_joueur', cascade: ['persist', 'remove'])]
     private ?CompteBancaire $compteBancaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'id_joueur')]
+    private ?CentreEquestre $centreEquestre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -292,5 +295,17 @@ class Joueur
     public function __toString(): string
     {
         return $this->getPseudonyme();
+    }
+
+    public function getCentreEquestre(): ?CentreEquestre
+    {
+        return $this->centreEquestre;
+    }
+
+    public function setCentreEquestre(?CentreEquestre $centreEquestre): self
+    {
+        $this->centreEquestre = $centreEquestre;
+
+        return $this;
     }
 }

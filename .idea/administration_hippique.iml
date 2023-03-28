@@ -70,6 +70,11 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/doctrine-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/validator" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/form" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/framework-extra-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
