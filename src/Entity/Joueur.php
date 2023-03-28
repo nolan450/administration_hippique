@@ -67,12 +67,12 @@ class Joueur
     #[ORM\OneToOne(mappedBy: 'id_joueur', cascade: ['persist', 'remove'])]
     private ?CompteBancaire $compteBancaire = null;
 
-    #[ORM\ManyToMany(targetEntity: ClubHippique::class, mappedBy: 'id_joueur')]
-    private Collection $clubHippiques;
+    ##[ORM\ManyToMany(targetEntity: ClubHippique::class, mappedBy: 'id_joueur')]
+    #private Collection $clubHippiques;
 
     public function __construct()
     {
-        $this->clubHippiques = new ArrayCollection();
+        #$this->clubHippiques = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -303,7 +303,7 @@ class Joueur
     /**
      * @return Collection<int, ClubHippique>
      */
-    public function getClubHippiques(): Collection
+    /*public function getClubHippiques(): Collection
     {
         return $this->clubHippiques;
     }
@@ -326,7 +326,9 @@ class Joueur
 
         return $this;
 
-        }
+    }*/
+
+
     public function __toString(): string
     {
         return $this->getPseudonyme();

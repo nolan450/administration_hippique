@@ -2,6 +2,13 @@
 
 {% block title %}Cheval index{% endblock %}
 
+{% block stylesheets %}
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/fontawesome-free/css/all.min.css">
+{% endblock %}
+
 {% block body %}
         <a class="btn btn-primary float-right mb-3" href="{{ path('app_cheval_new') }}">Create new</a>
 
@@ -24,7 +31,7 @@
                 <td>{{ cheval.nom }}</td>
                 <td>{{ cheval.race }}</td>
                 <td>{{ cheval.description }}</td>
-                <td>{{ cheval.id_propietaire.prenom ?? '' }}</td>
+                <td>{{ cheval.idPropietaire.prenom }}</td>
                 <td>
                     <a href="{{ path('app_cheval_show', {'id': cheval.id}) }}">show</a>
                     <a href="{{ path('app_cheval_edit', {'id': cheval.id}) }}">edit</a>
@@ -38,4 +45,16 @@
         </tbody>
     </table>
 
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('adminlte/') }}dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('adminlte/') }}dist/js/demo.js"></script>
 {% endblock %}
