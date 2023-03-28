@@ -3,47 +3,65 @@
 {% block title %}Cheval index{% endblock %}
 
 {% block stylesheets %}
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/fontawesome-free/css/all.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 {% endblock %}
 
 {% block body %}
-        <a class="btn btn-primary float-right mb-3" href="{{ path('app_cheval_new') }}">Create new</a>
+    <h2 class="text-blue ml-2 mb-3">Chevaux</h2>
+
+        <div class="col-12">
+
+            <a class="btn btn-primary float-right mb-3" href="{{ path('app_cheval_new') }}">Create new</a>
+
+        </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table" id="chevaux">
+                    <thead>
+                    <tr>
+                        <th data-search="true">Id</th>
+                        <th data-search="true">Nom</th>
+                        <th data-search="true">Race</th>
+                        <th data-search="true">Description</th>
+                        <th data-search="true">Propietaire</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cheval in chevals %}
+                        <tr>
+                            <td>{{ cheval.id }}</td>
+                            <td>{{ cheval.nom }}</td>
+                            <td>{{ cheval.race }}</td>
+                            <td>{{ cheval.description }}</td>
+                            <td>{{ cheval.idPropietaire.prenom }}</td>
+                            <td>
+                                <a class="btn btn-light" href="{{ path('app_cheval_show', {'id': cheval.id}) }}">show</a>
+                                <a class="btn btn-dark" href="{{ path('app_cheval_edit', {'id': cheval.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Race</th>
-                <th>Description</th>
-                <th>Propietaire</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cheval in chevals %}
-            <tr>
-                <td>{{ cheval.id }}</td>
-                <td>{{ cheval.nom }}</td>
-                <td>{{ cheval.race }}</td>
-                <td>{{ cheval.description }}</td>
-                <td>{{ cheval.idPropietaire.prenom }}</td>
-                <td>
-                    <a href="{{ path('app_cheval_show', {'id': cheval.id}) }}">show</a>
-                    <a href="{{ path('app_cheval_edit', {'id': cheval.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+
 
 {% endblock %}
 
@@ -55,6 +73,71 @@
     <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('adminlte/') }}dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('adminlte/') }}dist/js/demo.js"></script>
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('adminlte/') }}plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script>
+
+        //doc ready
+        $(document).ready(function () {
+            //met la classe active sur le menu
+            $('#cheval_nav a').addClass('active');
+
+
+            $(function () {
+                $("#chevaux").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    "columnDefs": [
+                        { "searchable": false, "targets": [5] }
+                    ],
+                    "initComplete": function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var header = $(column.header());
+                            if (header.data("search")) {
+                                var input = $('<input type="text" placeholder="Search" class="form-control form-control-sm mb-2" />')
+                                    .appendTo(header)
+                                    .on("keyup change clear", function () {
+                                        if (column.search() !== this.value) {
+                                            column.search(this.value).draw();
+                                        }
+                                    });
+                            }
+                        });
+                    }
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            });
+        });
+
+
+    </script>
+
+    {#<script>
+        $(function () {
+            $("#chevaux").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>#}
+
 {% endblock %}
