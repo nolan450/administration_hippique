@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\JoueurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -299,7 +297,6 @@ class Joueur
         return $this;
     }
 
-
     /**
      * @return Collection<int, ClubHippique>
      */
@@ -327,8 +324,6 @@ class Joueur
         return $this;
 
     }*/
-
-
     public function __toString(): string
     {
         return $this->getPseudonyme();
