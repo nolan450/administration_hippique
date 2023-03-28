@@ -1,0 +1,115 @@
+{% extends '../base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="adminlte/{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="adminlte/{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="adminlte/{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Chevaux</h3>
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+            <table id="list-cheval" class="table table-hover text-nowrap">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Race</th>
+                    <th>Description</th>
+                    <th>Propriétaires</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cheval in chevaux %}
+                <tr>
+                    <td>{{ cheval.id }}</td>
+                    <td>{{ cheval.nom }}</td>
+                    <td>{{ cheval.race }}</td>
+                    <td>{{ cheval.description ?? '' }}</td>
+                    <td>{{ cheval.propietaire ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td>2478</td>
+                    <td>Lucky</td>
+                    <td>Quarter Horse</td>
+                    <td>Un cheval brun avec une petite étoile blanche sur son front.</td>
+                    <td>Samantha Lee, Michael Chen</td>
+                </tr>
+
+                <tr>
+                    <td>8931</td>
+                    <td>Mystic</td>
+                    <td>Arabe</td>
+                    <td>Un cheval blanc avec une crinière et une queue argentées.</td>
+                    <td>Ashley Brown, William Johnson</td>
+                </tr>
+
+                <tr>
+                    <td>6215</td>
+                    <td>Thunder</td>
+                    <td>Paint Horse</td>
+                    <td>Un cheval tacheté de noir et de blanc avec des yeux bleus brillants.</td>
+                    <td>Emily Davis</td>
+                </tr>
+
+                <tr>
+                    <td>4593</td>
+                    <td>Cocoa</td>
+                    <td>Appaloosa</td>
+                    <td>Un cheval léopard brun avec une crinière et une queue noires.</td>
+                    <td>Amy Garcia, David Rodriguez</td>
+                </tr>
+
+                <tr>
+                    <td>7654</td>
+                    <td>Romeo</td>
+                    <td>Andalou</td>
+                    <td>Un beau cheval gris avec une crinière et une queue noires.</td>
+                    <td>Sophie Martin, Nicolas Dubois</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="adminlte/{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="adminlte/{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="adminlte/{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="adminlte/{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="adminlte/{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script>
+        $(function () {
+            $("#list-cheval").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+{% endblock %}

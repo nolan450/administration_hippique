@@ -17,7 +17,7 @@ class CompteBancaire
 
     #[ORM\OneToOne(inversedBy: 'compteBancaire', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?joueur $id_joueur = null;
+    private ?Joueur $id_joueur = null;
 
     #[ORM\OneToMany(mappedBy: 'id_compte_bancaire', targetEntity: Transaction::class)]
     private Collection $transactions;
@@ -32,12 +32,12 @@ class CompteBancaire
         return $this->id;
     }
 
-    public function getIdJoueur(): ?joueur
+    public function getIdJoueur(): ?Joueur
     {
         return $this->id_joueur;
     }
 
-    public function setIdJoueur(joueur $id_joueur): self
+    public function setIdJoueur(Joueur $id_joueur): self
     {
         $this->id_joueur = $id_joueur;
 

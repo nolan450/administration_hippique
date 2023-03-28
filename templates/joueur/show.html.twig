@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joueur{% endblock %}
+
+{% block body %}
+    <h1>Joueur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ joueur.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudonyme</th>
+                <td>{{ joueur.pseudonyme }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ joueur.email }}</td>
+            </tr>
+            <tr>
+                <th>Mot_de_passe</th>
+                <td>{{ joueur.motDePasse }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ joueur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ joueur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ joueur.sexe }}</td>
+            </tr>
+            <tr>
+                <th>Date_de_naissance</th>
+                <td>{{ joueur.dateDeNaissance ? joueur.dateDeNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ joueur.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_postale</th>
+                <td>{{ joueur.adressePostale }}</td>
+            </tr>
+            <tr>
+                <th>Avatar</th>
+                <td>{{ joueur.avatar }}</td>
+            </tr>
+            <tr>
+                <th>Desciption</th>
+                <td>{{ joueur.desciption }}</td>
+            </tr>
+            <tr>
+                <th>Site_web</th>
+                <td>{{ joueur.siteWeb }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_ip</th>
+                <td>{{ joueur.adresseIp }}</td>
+            </tr>
+            <tr>
+                <th>Date_inciption</th>
+                <td>{{ joueur.dateInciption ? joueur.dateInciption|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Derniere_connexion</th>
+                <td>{{ joueur.derniereConnexion ? joueur.derniereConnexion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_joueur_index') }}">back to list</a>
+
+    <a href="{{ path('app_joueur_edit', {'id': joueur.id}) }}">edit</a>
+
+    {{ include('joueur/_delete_form.html.twig') }}
+{% endblock %}

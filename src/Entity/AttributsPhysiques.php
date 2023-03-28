@@ -27,7 +27,7 @@ class AttributsPhysiques
 
     #[ORM\OneToOne(inversedBy: 'attributsPhysiques', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?cheval $id_cheval = null;
+    private ?Cheval $id_cheval = null;
 
     public function getId(): ?int
     {
