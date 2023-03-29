@@ -13,9 +13,6 @@ class FamilleItems
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_famille_items = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nourriture = null;
 
@@ -31,18 +28,6 @@ class FamilleItems
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdFamilleItems(): ?int
-    {
-        return $this->id_famille_items;
-    }
-
-    public function setIdFamilleItems(int $id_famille_items): self
-    {
-        $this->id_famille_items = $id_famille_items;
-
-        return $this;
     }
 
     public function getNourriture(): ?string

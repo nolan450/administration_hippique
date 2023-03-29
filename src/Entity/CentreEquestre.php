@@ -16,9 +16,6 @@ class CentreEquestre
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $id_centre_equestre = null;
-
-    #[ORM\Column]
     private ?int $capacite_accueil = null;
 
     #[ORM\OneToMany(mappedBy: 'centreEquestre', targetEntity: Joueur::class)]
@@ -36,18 +33,6 @@ class CentreEquestre
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdCentreEquestre(): ?int
-    {
-        return $this->id_centre_equestre;
-    }
-
-    public function setIdCentreEquestre(int $id_centre_equestre): self
-    {
-        $this->id_centre_equestre = $id_centre_equestre;
-
-        return $this;
     }
 
     public function getCapaciteAccueil(): ?int

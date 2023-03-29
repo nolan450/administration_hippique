@@ -14,9 +14,6 @@ class Items
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_items = null;
-
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
@@ -32,18 +29,6 @@ class Items
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdItems(): ?int
-    {
-        return $this->id_items;
-    }
-
-    public function setIdItems(int $id_items): self
-    {
-        $this->id_items = $id_items;
-
-        return $this;
     }
 
     public function getType(): ?string

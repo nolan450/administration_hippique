@@ -13,9 +13,6 @@ class TacheAutomatique
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_tache_auto = null;
-
     #[ORM\Column(length: 255)]
     private ?string $nom_action = null;
 
@@ -28,18 +25,6 @@ class TacheAutomatique
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdTacheAuto(): ?int
-    {
-        return $this->id_tache_auto;
-    }
-
-    public function setIdTacheAuto(int $id_tache_auto): self
-    {
-        $this->id_tache_auto = $id_tache_auto;
-
-        return $this;
     }
 
     public function getNomAction(): ?string

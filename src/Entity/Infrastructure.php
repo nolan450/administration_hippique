@@ -14,9 +14,6 @@ class Infrastructure
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_infrastructure = null;
-
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
@@ -44,18 +41,6 @@ class Infrastructure
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdInfrastructure(): ?int
-    {
-        return $this->id_infrastructure;
-    }
-
-    public function setIdInfrastructure(int $id_infrastructure): self
-    {
-        $this->id_infrastructure = $id_infrastructure;
-
-        return $this;
     }
 
     public function getType(): ?string

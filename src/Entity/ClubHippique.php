@@ -39,18 +39,6 @@ class ClubHippique
         return $this->id;
     }
 
-    public function getIdClubHippique(): ?int
-    {
-        return $this->id_club_hippique;
-    }
-
-    public function setIdClubHippique(int $id_club_hippique): self
-    {
-        $this->id_club_hippique = $id_club_hippique;
-
-        return $this;
-    }
-
     public function getCapaciteAccueil(): ?string
     {
         return $this->capacite_accueil;
