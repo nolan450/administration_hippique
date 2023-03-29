@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CentreEquestre{% endblock %}
+
+{% block body %}
+    <h1>CentreEquestre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ centre_equestre.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_centre_equestre</th>
+                <td>{{ centre_equestre.idCentreEquestre }}</td>
+            </tr>
+            <tr>
+                <th>Capacite_accueil</th>
+                <td>{{ centre_equestre.capaciteAccueil }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_centre_equestre_index') }}">back to list</a>
+
+    <a href="{{ path('app_centre_equestre_edit', {'id': centre_equestre.id}) }}">edit</a>
+
+    {{ include('centre_equestre/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ClubHippique{% endblock %}
+
+{% block body %}
+    <h1>Create new ClubHippique</h1>
+
+    {{ include('club_hippique/_form.html.twig') }}
+
+    <a href="{{ path('app_club_hippique_index') }}">back to list</a>
+{% endblock %}

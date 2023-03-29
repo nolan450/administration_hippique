@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CentreEquestre index{% endblock %}
+
+{% block body %}
+    <h1>CentreEquestre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_centre_equestre</th>
+                <th>Capacite_accueil</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for centre_equestre in centre_equestres %}
+            <tr>
+                <td>{{ centre_equestre.id }}</td>
+                <td>{{ centre_equestre.idCentreEquestre }}</td>
+                <td>{{ centre_equestre.capaciteAccueil }}</td>
+                <td>
+                    <a href="{{ path('app_centre_equestre_show', {'id': centre_equestre.id}) }}">show</a>
+                    <a href="{{ path('app_centre_equestre_edit', {'id': centre_equestre.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_centre_equestre_new') }}">Create new</a>
+{% endblock %}
