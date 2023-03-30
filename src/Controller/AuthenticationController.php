@@ -22,7 +22,7 @@ class AuthenticationController extends AbstractController
             $motdepasse = $_POST['password'];
 
             try {
-                $connexion = new \PDO("mysql:host=192.168.56.101;dbname=club_hippique", $user, $motdepasse);
+                $connexion = new \PDO("mysql:host=192.168.56.102;dbname=club_hippique", $user, $motdepasse);
                 if($connexion) {
                     return $this->redirect('index');
                 }
