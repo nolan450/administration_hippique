@@ -12,7 +12,6 @@ class ItemsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_items')
             ->add('type')
             ->add('niveau')
             ->add('description')
