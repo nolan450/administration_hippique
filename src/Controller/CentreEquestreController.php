@@ -17,7 +17,7 @@ class CentreEquestreController extends AbstractController
     public function index(CentreEquestreRepository $centreEquestreRepository): Response
     {
         return $this->render('centre_equestre/index.html.twig', [
-            'centre_equestres' => $centreEquestreRepository->findAll(),
+            'centre_equestres' => $centreEquestreRepository->findBy([], [], 1000),
         ]);
     }
 
