@@ -15,7 +15,7 @@ class Transaction
 
     #[ORM\ManyToOne(inversedBy: 'transactions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?compteBancaire $id_compte_bancaire = null;
+    private ?CompteBancaire $id_compte_bancaire = null;
 
     #[ORM\Column]
     private ?int $montant = null;
@@ -25,12 +25,12 @@ class Transaction
         return $this->id;
     }
 
-    public function getIdCompteBancaire(): ?compteBancaire
+    public function getIdCompteBancaire(): ?CompteBancaire
     {
         return $this->id_compte_bancaire;
     }
 
-    public function setIdCompteBancaire(?compteBancaire $id_compte_bancaire): self
+    public function setIdCompteBancaire(?CompteBancaire $id_compte_bancaire): self
     {
         $this->id_compte_bancaire = $id_compte_bancaire;
 
