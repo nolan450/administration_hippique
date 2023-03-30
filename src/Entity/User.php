@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,6 +17,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $role = null;
+
+    /*#[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 150)]
@@ -26,14 +29,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column]
-    private ?bool $isActive = null;
+    private ?bool $isActive = null;*/
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    /*public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -99,5 +102,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // TODO: Implement getUserIdentifier() method.
         $var = '';
         return $var;
+    }*/
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
