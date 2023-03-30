@@ -36,10 +36,11 @@ class ChevalController extends AbstractController
         $joueur->setDateInscription(new \DateTime());
         $joueur->setDerniereConnexion(new \DateTime());*/
         //$joueurRepository->save($joueur, true);
+        // me retourne 1000 chevaux
 
 
         return $this->render('cheval/index.html.twig', [
-            'chevals' => $chevalRepository->findAll(),
+            'chevals' => $chevalRepository->findBy([], [], 1000),
         ]);
     }
 
