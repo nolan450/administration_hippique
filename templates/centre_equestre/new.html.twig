@@ -3,9 +3,31 @@
 {% block title %}New CentreEquestre{% endblock %}
 
 {% block body %}
-    <h1>Create new CentreEquestre</h1>
+    {#<h1>Create new CentreEquestre</h1>
 
     {{ include('centre_equestre/_form.html.twig') }}
 
-    <a href="{{ path('app_centre_equestre_index') }}">back to list</a>
+    <a href="{{ path('app_centre_equestre_index') }}">back to list</a>#}
+    <div class="col-md-6 m-auto">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">General</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.capacite_accueil) }}
+                    {{ form_widget(form.capacite_accueil, {'attr': {'class': 'form-control', 'placeholder': 'Nom du cheval'}}) }}
+                </div>
+                <a class="btn btn-light mr-1" href="{{ path('app_cheval_index') }}">Retour à la liste</a>
+                <button type="submit" class="btn btn-primary">Creer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

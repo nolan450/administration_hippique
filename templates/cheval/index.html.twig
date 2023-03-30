@@ -114,7 +114,7 @@
                             var column = this;
                             var header = $(column.header());
                             if (header.data("search")) {
-                                var input = $('<input type="text" placeholder="Search" class="form-control form-control-sm mb-2" />')
+                                var input = $('<div><input type="text" placeholder="Search" class="form-control form-control-sm mb-2" /></div>')
                                     .appendTo(header)
                                     .on("keyup change clear", function () {
                                         if (column.search() !== this.value) {

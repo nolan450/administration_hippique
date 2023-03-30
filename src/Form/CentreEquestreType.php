@@ -12,7 +12,6 @@ class CentreEquestreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id_centre_equestre')
             ->add('capacite_accueil')
         ;
     }

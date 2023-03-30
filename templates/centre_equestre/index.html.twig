@@ -2,36 +2,123 @@
 
 {% block title %}CentreEquestre index{% endblock %}
 
+{% block stylesheets %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/fontawesome-free/css/all.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+{% endblock %}
+
 {% block body %}
-    <h1>CentreEquestre index</h1>
+    <h2 class="text-blue ml-2 mb-3">Centre equestre</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Id_centre_equestre</th>
-                <th>Capacite_accueil</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for centre_equestre in centre_equestres %}
-            <tr>
-                <td>{{ centre_equestre.id }}</td>
-                <td>{{ centre_equestre.idCentreEquestre }}</td>
-                <td>{{ centre_equestre.capaciteAccueil }}</td>
-                <td>
-                    <a href="{{ path('app_centre_equestre_show', {'id': centre_equestre.id}) }}">show</a>
-                    <a href="{{ path('app_centre_equestre_edit', {'id': centre_equestre.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="col-12">
 
-    <a href="{{ path('app_centre_equestre_new') }}">Create new</a>
+        <a class="btn btn-primary float-right mb-3" href="{{ path('app_centre_equestre_new') }}">Create new</a>
+
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table" id="centre_equestre">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Capacite_accueil</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for centre_equestre in centre_equestres %}
+                        <tr>
+                            <td>{{ centre_equestre.id }}</td>
+                            <td>{{ centre_equestre.capaciteAccueil }}</td>
+                            <td>
+                                <a href="{{ path('app_centre_equestre_show', {'id': centre_equestre.id}) }}">show</a>
+                                <a href="{{ path('app_centre_equestre_edit', {'id': centre_equestre.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="4">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {#<a href="{{ path('app_centre_equestre_new') }}">Create new</a>#}
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('adminlte/') }}dist/js/adminlte.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('adminlte/') }}plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script>
+
+        //doc ready
+        $(document).ready(function () {
+            //met la classe active sur le menu
+            $('#centre_equestre_nav a').addClass('active');
+
+
+            $(function () {
+                $("#centre_equestre").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    "columnDefs": [
+                        { "searchable": false, "targets": [2] }
+                    ],
+                    "initComplete": function () {
+                        this.api().columns().every(function () {
+                            var column = this;
+                            var header = $(column.header());
+                            if (header.data("search")) {
+                                var input = $('<div><input type="text" placeholder="Search" class="form-control form-control-sm mb-2" /></div>')
+                                    .appendTo(header)
+                                    .on("keyup change clear", function () {
+                                        if (column.search() !== this.value) {
+                                            column.search(this.value).draw();
+                                        }
+                                    });
+                            }
+                        });
+                    }
+                }).buttons().container().appendTo('#centre_equestre_wrapper .col-md-6:eq(0)');
+            });
+        });
+
+
+    </script>
+
 {% endblock %}

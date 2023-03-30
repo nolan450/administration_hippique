@@ -32,7 +32,7 @@ class Joueur
     #[ORM\Column]
     private ?int $sexe = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_de_naissance = null;
 
     #[ORM\Column(length: 255)]
@@ -64,9 +64,6 @@ class Joueur
 
     #[ORM\OneToOne(mappedBy: 'id_joueur', cascade: ['persist', 'remove'])]
     private ?CompteBancaire $compteBancaire = null;
-
-    #[ORM\ManyToOne(inversedBy: 'id_joueur')]
-    private ?CentreEquestre $centreEquestre = null;
 
     public function getId(): ?int
     {
@@ -295,17 +292,5 @@ class Joueur
     public function __toString(): string
     {
         return $this->getPseudonyme();
-    }
-
-    public function getCentreEquestre(): ?CentreEquestre
-    {
-        return $this->centreEquestre;
-    }
-
-    public function setCentreEquestre(?CentreEquestre $centreEquestre): self
-    {
-        $this->centreEquestre = $centreEquestre;
-
-        return $this;
     }
 }

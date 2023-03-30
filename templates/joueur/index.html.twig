@@ -2,10 +2,29 @@
 
 {% block title %}Joueur index{% endblock %}
 
-{% block body %}
-    <h1>Joueur index</h1>
+{% block stylesheets %}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/fontawesome-free/css/all.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('adminlte/') }}plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+{% endblock %}
 
-    <table class="table">
+{% block body %}
+<h2 class="text-blue ml-2 mb-3">Joueurs</h2>
+
+<div class="col-12">
+
+    <a class="btn btn-primary float-right mb-3" href="{{ path('app_cheval_new') }}">Create new</a>
+
+</div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+    <table class="table" id="joueurs">
         <thead>
             <tr>
                 <th>Id</th>
@@ -41,10 +60,10 @@
                 <td>{{ joueur.telephone }}</td>
                 <td>{{ joueur.adressePostale }}</td>
                 <td>{{ joueur.avatar }}</td>
-                <td>{{ joueur.desciption }}</td>
+                <td>{{ joueur.description }}</td>
                 <td>{{ joueur.siteWeb }}</td>
                 <td>{{ joueur.adresseIp }}</td>
-                <td>{{ joueur.dateInciption ? joueur.dateInciption|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ joueur.dateInscription ? joueur.dateInscription|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ joueur.derniereConnexion ? joueur.derniereConnexion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_joueur_show', {'id': joueur.id}) }}">show</a>
@@ -58,6 +77,72 @@
         {% endfor %}
         </tbody>
     </table>
+        </div>
+    </div>
+</div>
 
     <a href="{{ path('app_joueur_new') }}">Create new</a>
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('adminlte/') }}dist/js/adminlte.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte/') }}plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte/') }}plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('adminlte/') }}plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/jszip/jszip.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="{{ asset('adminlte/') }}plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script>
+
+        //doc ready
+        $(document).ready(function () {
+            //met la classe active sur le menu
+            $('#joueur_nav a').addClass('active');
+
+
+            $(function () {
+                $("#joueurs").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "pageLength": 20,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                    "columnDefs": [
+                        { "searchable": false, "targets": [5] }
+                    ],
+                }).buttons().container().appendTo('#joueurs_wrapper .col-md-6:eq(0)');
+            });
+        });
+
+
+    </script>
+
+    {#<script>
+        $(function () {
+            $("#chevaux").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>#}
+
 {% endblock %}

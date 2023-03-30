@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+ini_set('memory_limit', '256M');
+
 
 use App\Entity\Joueur;
 use App\Form\JoueurType;
@@ -17,7 +19,8 @@ class JoueurController extends AbstractController
     public function index(JoueurRepository $joueurRepository): Response
     {
         return $this->render('joueur/index.html.twig', [
-            'joueurs' => $joueurRepository->findAll(),
+            //selectionne que 1000 joueurs
+            'joueurs' => $joueurRepository->findBy([], [], 1000),
         ]);
     }
 
