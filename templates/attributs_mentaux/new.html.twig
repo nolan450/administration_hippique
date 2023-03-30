@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AttributsMentaux{% endblock %}
+
+{% block body %}
+    <h1>Create new AttributsMentaux</h1>
+
+    {{ include('attributs_mentaux/_form.html.twig') }}
+
+    <a href="{{ path('app_attributs_mentaux_index') }}">back to list</a>
+{% endblock %}

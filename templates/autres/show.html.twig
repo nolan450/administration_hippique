@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autres{% endblock %}
+
+{% block body %}
+    <h1>Autres</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ autre.id }}</td>
+            </tr>
+            <tr>
+                <th>Experience</th>
+                <td>{{ autre.experience }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ autre.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Etat_general</th>
+                <td>{{ autre.etatGeneral }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_autres_index') }}">back to list</a>
+
+    <a href="{{ path('app_autres_edit', {'id': autre.id}) }}">edit</a>
+
+    {{ include('autres/_delete_form.html.twig') }}
+{% endblock %}

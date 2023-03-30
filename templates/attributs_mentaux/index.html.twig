@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AttributsMentaux index{% endblock %}
+
+{% block body %}
+    <h1>AttributsMentaux index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sociabilite</th>
+                <th>Intelligence</th>
+                <th>Temperament</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attributs_mentaux in attributs_mentauxes %}
+            <tr>
+                <td>{{ attributs_mentaux.id }}</td>
+                <td>{{ attributs_mentaux.sociabilite }}</td>
+                <td>{{ attributs_mentaux.intelligence }}</td>
+                <td>{{ attributs_mentaux.temperament }}</td>
+                <td>
+                    <a href="{{ path('app_attributs_mentaux_show', {'id': attributs_mentaux.id}) }}">show</a>
+                    <a href="{{ path('app_attributs_mentaux_edit', {'id': attributs_mentaux.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attributs_mentaux_new') }}">Create new</a>
+{% endblock %}

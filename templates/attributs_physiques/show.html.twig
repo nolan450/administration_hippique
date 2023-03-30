@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AttributsPhysiques{% endblock %}
+
+{% block body %}
+    <h1>AttributsPhysiques</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ attributs_physique.id }}</td>
+            </tr>
+            <tr>
+                <th>Resistance</th>
+                <td>{{ attributs_physique.resistance }}</td>
+            </tr>
+            <tr>
+                <th>Endurance</th>
+                <td>{{ attributs_physique.endurance }}</td>
+            </tr>
+            <tr>
+                <th>Detente</th>
+                <td>{{ attributs_physique.detente }}</td>
+            </tr>
+            <tr>
+                <th>Vitesse</th>
+                <td>{{ attributs_physique.vitesse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attributs_physiques_index') }}">back to list</a>
+
+    <a href="{{ path('app_attributs_physiques_edit', {'id': attributs_physique.id}) }}">edit</a>
+
+    {{ include('attributs_physiques/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AttributsPhysiques index{% endblock %}
+
+{% block body %}
+    <h1>AttributsPhysiques index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Resistance</th>
+                <th>Endurance</th>
+                <th>Detente</th>
+                <th>Vitesse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attributs_physique in attributs_physiques %}
+            <tr>
+                <td>{{ attributs_physique.id }}</td>
+                <td>{{ attributs_physique.resistance }}</td>
+                <td>{{ attributs_physique.endurance }}</td>
+                <td>{{ attributs_physique.detente }}</td>
+                <td>{{ attributs_physique.vitesse }}</td>
+                <td>
+                    <a href="{{ path('app_attributs_physiques_show', {'id': attributs_physique.id}) }}">show</a>
+                    <a href="{{ path('app_attributs_physiques_edit', {'id': attributs_physique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_attributs_physiques_new') }}">Create new</a>
+{% endblock %}

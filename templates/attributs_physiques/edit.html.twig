@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AttributsPhysiques{% endblock %}
+
+{% block body %}
+    <h1>Edit AttributsPhysiques</h1>
+
+    {{ include('attributs_physiques/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_attributs_physiques_index') }}">back to list</a>
+
+    {{ include('attributs_physiques/_delete_form.html.twig') }}
+{% endblock %}

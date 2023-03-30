@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AttributsMentaux{% endblock %}
+
+{% block body %}
+    <h1>Edit AttributsMentaux</h1>
+
+    {{ include('attributs_mentaux/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_attributs_mentaux_index') }}">back to list</a>
+
+    {{ include('attributs_mentaux/_delete_form.html.twig') }}
+{% endblock %}

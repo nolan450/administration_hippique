@@ -17,7 +17,7 @@ class ItemsController extends AbstractController
     public function index(ItemsRepository $itemsRepository): Response
     {
         return $this->render('items/index.html.twig', [
-            'items' => $itemsRepository->findAll(),
+            'items' => $itemsRepository->findBy([], [], 1000),
         ]);
     }
 

@@ -64,13 +64,19 @@
                         <li id="joueur_nav" class="nav-item">
                             <a href="{{ path('app_joueur_index') }}" class="nav-link">
                                 <i class="fa fa-user nav-icon"></i>
-                                <p>Joueur</p>
+                                <p>Joueurs</p>
+                            </a>
+                        </li>
+                        <li id="transaction_nav" class="nav-item">
+                            <a href="{{ path('app_transaction_index') }}" class="nav-link">
+                                <i class="fa fa-money nav-icon"></i>
+                                <p>Transactions</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            <a href="{{ path('app_items_index') }}" class="nav-link">
                                 <i class="fa fa-shopping-bag nav-icon"></i>
-                                <p>Inventaires</p>
+                                <p>Items</p>
                             </a>
                         </li>
                         <li class="nav-item">
