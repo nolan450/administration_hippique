@@ -23,12 +23,10 @@ class AuthenticationController extends AbstractController
 
             try {
                 $connexion = new \PDO("mysql:host=192.168.56.101;dbname=club_hippique", $user, $motdepasse);
-                var_dump($connexion);die();
                 if($connexion) {
                     return $this->redirect('index');
                 }
             } catch (\PDOException $e) {
-                return $e->getMessage();
                 // affichage d'un message d'erreur en cas d'échec de connexion
                 return $this->render('security/login2.html.twig', [
                     'controller_name' => 'AuthenticationController',
